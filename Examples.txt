@@ -1,0 +1,11 @@
+#Example from Meijer 
+#(Meijer CJLM, Berkhof J, Castle PE, Hesselink AT, Franco EL, Ronco G, et al. Guidelines for human papillomavirus 
+#DNA test requirements for primary cervical cancer screening in women 30 years and older. Int J Cancer. 2009;124(3):516–20. )
+
+#In R software
+
+Three_sided_test(a=73, b=1, c=1, d=0, delta_l=0.9, delta_u=1/0.9, alpha=0.05, dp=3)
+
+#In Stata
+threesidedtest 73 1 1 1, delta_l(0.9) delta_u(1/0.9) nograph
+threesidedtest 73 1 1 1, delta_l(0.9) delta_u(1/0.9) nograph
