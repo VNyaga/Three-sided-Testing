@@ -1,3 +1,7 @@
+if (!require("rootSolve")) install.packages("rootSolve")
+if (!require("formattable")) install.packages("formattable")
+library(rootSolve)
+library(formattable)
 
 #========================================================================================================
 #   Testing
