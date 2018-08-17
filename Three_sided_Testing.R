@@ -1,7 +1,7 @@
-if (!require("rootSolve")) install.packages("rootSolve")
-if (!require("formattable")) install.packages("formattable")
-library(rootSolve)
-library(formattable)
+
+#========================================================================================================
+#   Testing
+#========================================================================================================
 
 z = function(x){
     n11 = x[1]
@@ -25,7 +25,9 @@ z = function(x){
     z
 }
 
-
+#========================================================================================================
+#   Three sided Confidence Intervals
+#========================================================================================================
 CI_3_sided = function(df, alpha=0.05, dp=3) {
     delta_l=df[5] 
     delta_u=df[6]
@@ -108,6 +110,9 @@ CI_3_sided = function(df, alpha=0.05, dp=3) {
     return(new.ci)
 }
 
+#============================================================================
+#      P-values
+#============================================================================
 
 pval = function(x, dp=3) {
     delta_l = x[5]
@@ -124,6 +129,9 @@ pval = function(x, dp=3) {
 }
 
 
+#============================================================================
+#      Classical confidence intervals
+#============================================================================
 
 cml_ci = function(df, alpha=0.05) {
     n11 = df[1] 
@@ -160,6 +168,9 @@ cml_ci = function(df, alpha=0.05) {
 }
 
 
+#============================================================================
+#      Nice printout
+#============================================================================
 
 Three_sided_test = function(a, b, c, d, delta_l, delta_u, alpha=0.05, dp=3) {
     x = matrix(c(a, b, c, d), nrow=2, byrow = TRUE)
@@ -180,17 +191,18 @@ Three_sided_test = function(a, b, c, d, delta_l, delta_u, alpha=0.05, dp=3) {
     cat("Data:")
     print(x)
     cat("\n")
-    cat("H0: RR < delta_l or RR > delta_u versus H1: delta_l <= RR <= delta_u\n")
+    cat(paste("H0: RR < ", digits(delta_l, digits = 3, format = "f"), " or RR > ", digits(delta_u, digits = 3, format = "f"),
+              " versus H1: ", digits(delta_l, digits = 3, format = "f"), " <= RR <= ", digits(delta_u, digits = 3, format = "f"), "\n", sep=''))
     cat("Test statistic (1) = "); message(digits(z_l, digits = 3, format = "f"));
     cat("Test statistic (2) = "); message(digits(z_u, digits = 3, format = "f")); 
     cat('P-value = '); message(p$equiv_p)
     
     cat("\n")
-    cat("H0: RR < delta_l versus H1:  RR >= delta_l\n")
+    cat(paste("H0: RR < ", digits(delta_l, digits = 3, format = "f"), " versus H1:  RR >= ", digits(delta_l, digits = 3, format = "f"), "\n"))
     cat("Test statistic = "); message(digits(z_l, digits = 3, format = "f")); cat('P-value = '); message(p$noninf_p)
     
     cat("\n")
-    cat("H0: RR <= delta_u versus H1:  RR > delta_u\n")
+    cat(paste("H0: RR <= ", digits(delta_u, digits = 3, format = "f"), " versus H1:  RR > ", digits(delta_u, digits = 3, format = "f"), "\n"))
     cat("Test statistic = "); message(digits(z_u, digits = 3, format = "f")); cat('P-value = '); message(p$super_p)
     
     cat("\n")
