@@ -201,7 +201,7 @@ version 14.0
 	
 	/*Conclusion*/
 	di 
-	di as txt "Overall conclusion :"
+	di as txt "Overall conclusion:"
 	local syml = substr("`newl'", 1, 1)
 	local newl = substr("`newl'", 2, .)
 	
